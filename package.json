@@ -1,0 +1,19 @@
+{
+  "name": "refactoring-study",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module", 
+  "scripts": {
+    "dev": "node index.js",
+    "test": "test"
+  },
+  "author": "Eduardo Almeida",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  },
+  "dependencies": {
+    "node": "^21.1.0"
+  }
+}
