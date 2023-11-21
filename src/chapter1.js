@@ -9,11 +9,7 @@ export function statement(invoice, plays) {
   }).format;
 
   for (let perf of invoice.performances) {
-    // soma créditos por volume
-    volumeCredits += Math.max(perf.audience - 30, 0);
-    //soma um crédito extra para cada dex espectadores de comédia
-    if ("comedy" === playFor(perf).type)
-      volumeCredits += Math.floor(perf.audience / 5);
+    volumeCredits += volumeCreditsFor(perf);
 
     // exibe a linha para esta requisição
     result += `   ${playFor(perf).name}: ${format(amountFor(perf) / 100)} (${
@@ -49,6 +45,15 @@ export function statement(invoice, plays) {
       default:
         throw new Error(`unknown type: ${playFor(aPerformance).type}`);
     }
+    return result;
+  }
+
+  function volumeCreditsFor(aPerformance) {
+    let result = 0;
+    result += Math.max(aPerformance.audience - 30, 0);
+    if ("comedy" === playFor(aPerformance).type)
+      result += Math.floor(aPerformance.audience / 5);
+
     return result;
   }
 }
